@@ -4,7 +4,7 @@ import ScrollReveal from "./ScrollReveal";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center justify-center px-6 pt-24 pb-16 sm:pt-32 sm:pb-20">
+    <section className="flex flex-col items-center justify-center px-6 pt-12 pb-10 sm:pt-24 sm:pb-16">
       <ScrollReveal>
         <h1
           className="text-center font-medium leading-tight tracking-tight text-[var(--text-primary)]"

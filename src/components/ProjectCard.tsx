@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 interface ProjectLink {
   label: string;
@@ -19,6 +20,8 @@ interface ProjectCardProps {
   willProve?: string;
   links?: ProjectLink[];
   isHero?: boolean;
+  isMuted?: boolean;
+  titleDisplay?: ReactNode;
 }
 
 export default function ProjectCard({
@@ -32,16 +35,20 @@ export default function ProjectCard({
   willProve,
   links,
   isHero = false,
+  isMuted = false,
+  titleDisplay,
 }: ProjectCardProps) {
   return (
     <article
-      className={`project-card group relative rounded-xl border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--border-hover)] hover:bg-[var(--surface-hover)] hover:scale-[1.015] transition-all ${
+      className={`project-card group relative rounded-xl border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--border-hover)] hover:bg-[var(--surface-hover)] hover:scale-[1.015] transition-all h-full ${
         isHero ? "col-span-full" : ""
       }`}
       style={{
         padding: "clamp(24px, 4vw, 40px)",
         transitionDuration: "var(--duration-hover)",
         transitionTimingFunction: "ease-out",
+        opacity: isMuted ? 0.55 : undefined,
+        filter: isMuted ? "saturate(0.3)" : undefined,
       }}
     >
       {/* Hover glow effect */}
@@ -57,7 +64,7 @@ export default function ProjectCard({
         {/* Title row */}
         <div className="flex items-center gap-3 mb-2">
           <h3 className="text-xl font-semibold text-[var(--text-primary)]">
-            {title}
+            {titleDisplay || title}
           </h3>
           {badge && (
             <span className="text-xs font-medium text-[var(--accent)] border border-[var(--accent-muted)] rounded-full px-3 py-0.5">
@@ -137,30 +144,54 @@ export default function ProjectCard({
 
         {/* Links */}
         {links && links.length > 0 && (
-          <div className="mt-6 flex flex-wrap gap-4">
-            {links.map((link) =>
-              link.external ? (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {links.map((link) => {
+              const isGitHub = link.label === "GitHub";
+              const btnClass =
+                "inline-flex items-center gap-2 text-sm font-medium rounded-lg px-4 py-2 border transition-all " +
+                (isGitHub
+                  ? "border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)] bg-transparent"
+                  : "border-[var(--accent-muted)] text-[var(--accent)] hover:bg-[var(--accent-glow)] bg-transparent");
+
+              const content = (
+                <>
+                  {isGitHub && (
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                  )}
+                  {link.label}
+                </>
+              );
+
+              return link.external ? (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[var(--accent)] hover:underline transition-colors"
+                  className={btnClass}
                   style={{ transitionDuration: "var(--duration-hover)" }}
                 >
-                  {link.label}
+                  {content}
                 </a>
               ) : (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-sm text-[var(--accent)] hover:underline transition-colors"
+                  className={btnClass}
                   style={{ transitionDuration: "var(--duration-hover)" }}
                 >
-                  {link.label}
+                  {content}
                 </Link>
-              )
-            )}
+              );
+            })}
           </div>
         )}
       </div>

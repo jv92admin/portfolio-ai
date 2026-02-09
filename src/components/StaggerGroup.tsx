@@ -38,6 +38,7 @@ export default function StaggerGroup({
     <div ref={ref} className={className}>
       {Children.map(children, (child, index) => (
         <div
+          className="h-full"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(24px)",

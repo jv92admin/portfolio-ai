@@ -26,7 +26,7 @@ Text-primary:       #EDEDED    /* headings, body text */
 Text-secondary:     #888888    /* subtitles, metadata, dates */
 Text-muted:         #555555    /* placeholders, disabled states */
 
-Accent:             TBD        /* developer chooses — see options below */
+Accent:             #4AE5A0    /* soft green — chosen by developer */
 Accent-muted:       [accent at 60% opacity]    /* subtle uses */
 Accent-glow:        [accent at 15% opacity]    /* card hover glow, diagram pulse */
 ```

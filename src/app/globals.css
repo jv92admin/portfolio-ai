@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
+/* ========================================
+   Design Tokens — vignesh.ai
+   Source of truth: .claude/docs/design-system.md
+   ======================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Backgrounds */
+  --background: #0A0A0A;
+  --surface: #141414;
+  --surface-hover: #1A1A1A;
+
+  /* Borders */
+  --border: #222222;
+  --border-hover: rgba(74, 229, 160, 0.4);
+
+  /* Text */
+  --text-primary: #EDEDED;
+  --text-secondary: #888888;
+  --text-muted: #555555;
+
+  /* Accent — Soft Green (swap this single block to change accent) */
+  --accent: #4AE5A0;
+  --accent-muted: rgba(74, 229, 160, 0.6);
+  --accent-glow: rgba(74, 229, 160, 0.15);
+
+  /* Error */
+  --error: #E54A4A;
+  --error-glow: rgba(229, 74, 74, 0.15);
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* Spacing base */
+  --space-unit: 4px;
+
+  /* Animation */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-reveal: 600ms;
+  --duration-hover: 220ms;
+  --stagger-delay: 100ms;
 }
 
+/* Tailwind v4 theme integration */
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-glow: var(--accent-glow);
+  --color-error: var(--error);
+  --color-error-glow: var(--error-glow);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base styles */
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll for anchor navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduced motion: disable all transitions and animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Selection styling */
+::selection {
+  background: var(--accent-muted);
+  color: var(--background);
 }

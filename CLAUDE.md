@@ -55,8 +55,39 @@ When in doubt: content first, layout second, animation third.
 
 ## Project Structure
 
-<!-- Fill after Next.js scaffold is created -->
+```
+src/
+  app/
+    layout.tsx          # Root layout (Geist font, global styles)
+    page.tsx            # Landing page (/)
+    globals.css         # Design tokens + Tailwind imports
+    alfred/
+      page.tsx          # Alfred deep-dive (/alfred)
+    style-guide/
+      page.tsx          # Style guide (/style-guide)
+  components/
+    Header.tsx
+    Footer.tsx
+    Hero.tsx
+    IntroBlock.tsx
+    ProjectCard.tsx
+    ScrollReveal.tsx
+    StaggerGroup.tsx
+    ArchitectureDiagram.tsx
+    TechnicalSection.tsx
+public/
+docs/
+  vignesh-ai-kickoff.md
+.claude/
+  agents/               # Agent system prompts
+  docs/                 # Design system, future agents
+```
 
 ## Stack
 
-<!-- Fill after Step 1 decisions: Tailwind vs CSS modules, font choice, etc. -->
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4 + CSS custom properties for design tokens
+- **Font:** Geist (via `next/font/google`)
+- **Deployment:** Vercel (vignesh.ai)
+- **Accent color:** Soft green `#4AE5A0`

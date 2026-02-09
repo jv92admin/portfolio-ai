@@ -37,6 +37,11 @@ const projects = [
         href: "https://ryesvp.me",
         external: true,
       },
+      {
+        label: "GitHub",
+        href: "https://github.com/jv92admin/ryesvp",
+        external: true,
+      },
     ],
   },
   {
@@ -47,6 +52,13 @@ const projects = [
     built: "A Raspberry Pi-powered audio fingerprinting and visualization system.",
     learned:
       'Debugging hardware with an AI pair programmer is a uniquely humbling experience. Also that the best projects start with "no reason other than it would be cool."',
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/jv92admin/trackviewer",
+        external: true,
+      },
+    ],
   },
   {
     title: "FPL Assistant",

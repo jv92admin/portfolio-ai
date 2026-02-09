@@ -5,11 +5,11 @@ const footerLinks = [
   },
   {
     label: "GitHub",
-    href: "https://github.com/jv92admin/alfredagain",
+    href: "https://github.com/jv92admin",
   },
   {
     label: "Instagram",
-    href: "#",
+    href: "https://instagram.com/bigneshhh",
   },
 ];
 

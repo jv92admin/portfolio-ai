@@ -8,12 +8,12 @@ const navLinks = [
   },
   {
     label: "GitHub",
-    href: "https://github.com/jv92admin/alfredagain",
+    href: "https://github.com/jv92admin",
     external: true,
   },
   {
     label: "Instagram",
-    href: "#",
+    href: "https://instagram.com/bigneshhh",
     external: true,
   },
 ];

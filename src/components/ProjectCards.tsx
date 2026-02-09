@@ -28,6 +28,8 @@ const projects = [
       },
     ],
     isHero: true,
+    image: "/images/alfred.jpg",
+    imageType: "portrait" as const,
   },
   {
     title: "ryesvp",
@@ -54,6 +56,8 @@ const projects = [
         external: true,
       },
     ],
+    image: "/images/ryesvp.png",
+    imageType: "portrait" as const,
   },
   {
     title: "trackviewer",
@@ -70,6 +74,7 @@ const projects = [
         external: true,
       },
     ],
+    image: "/images/trackviewer_demo.jpg",
   },
   {
     title: "vignesh.ai",
@@ -86,6 +91,7 @@ const projects = [
         external: false,
       },
     ],
+    image: "/images/styleguide.png",
   },
   {
     title: "fplpundit",

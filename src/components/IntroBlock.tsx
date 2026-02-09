@@ -11,9 +11,12 @@ export default function IntroBlock() {
           style={{ lineHeight: 1.6 }}
         >
           I&apos;ve always had ideas for things I wanted to build. I just
-          couldn&apos;t code. In 2025, that barrier disappeared. I started
-          building — not to prove anything, but because nothing was stopping me
-          anymore.
+          couldn&apos;t code. Recently, AI changed that.{" "}
+          <span className="text-[var(--accent)] italic">
+            Ideas that lived in my head for years now take hours to build.
+          </span>{" "}
+          I started building — not to prove anything, but because nothing was
+          stopping me anymore.
         </p>
       </ScrollReveal>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -22,6 +23,8 @@ interface ProjectCardProps {
   isHero?: boolean;
   isMuted?: boolean;
   titleDisplay?: ReactNode;
+  image?: string;
+  imageType?: "portrait" | "landscape";
 }
 
 export default function ProjectCard({
@@ -37,6 +40,8 @@ export default function ProjectCard({
   isHero = false,
   isMuted = false,
   titleDisplay,
+  image,
+  imageType = "landscape",
 }: ProjectCardProps) {
   return (
     <article
@@ -132,15 +137,52 @@ export default function ProjectCard({
           )}
         </div>
 
-        {/* Image placeholder */}
-        <div
-          className="mt-6 flex items-center justify-center rounded-lg border border-dashed border-[var(--border)] bg-[var(--surface-hover)] text-sm text-[var(--text-muted)]"
-          style={{ height: "160px" }}
-          role="img"
-          aria-label={`Screenshot of ${title} coming soon`}
-        >
-          Screenshot coming soon
-        </div>
+        {/* Image */}
+        {image ? (
+          imageType === "portrait" ? (
+            <div className="mt-6 flex justify-center">
+              <div
+                className="relative overflow-hidden rounded-xl"
+                style={{
+                  maxWidth: isHero ? "280px" : "220px",
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+                }}
+              >
+                <Image
+                  src={image}
+                  alt={`Screenshot of ${title}`}
+                  width={420}
+                  height={800}
+                  className="w-full h-auto"
+                  sizes="280px"
+                />
+              </div>
+            </div>
+          ) : (
+            <div
+              className="mt-6 relative overflow-hidden rounded-lg border border-[var(--border)]"
+              style={{ maxHeight: isHero ? "360px" : "280px" }}
+            >
+              <Image
+                src={image}
+                alt={`Screenshot of ${title}`}
+                width={800}
+                height={450}
+                className="w-full h-full object-cover object-top"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+              />
+            </div>
+          )
+        ) : (
+          <div
+            className="mt-6 flex items-center justify-center rounded-lg border border-dashed border-[var(--border)] bg-[var(--surface-hover)] text-sm text-[var(--text-muted)]"
+            style={{ height: "160px" }}
+            role="img"
+            aria-label={`Screenshot of ${title} coming soon`}
+          >
+            Screenshot coming soon
+          </div>
+        )}
 
         {/* Links */}
         {links && links.length > 0 && (

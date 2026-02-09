@@ -25,6 +25,7 @@ interface ProjectCardProps {
   titleDisplay?: ReactNode;
   image?: string;
   imageType?: "portrait" | "landscape";
+  deepDiveHref?: string;
 }
 
 export default function ProjectCard({
@@ -42,6 +43,7 @@ export default function ProjectCard({
   titleDisplay,
   image,
   imageType = "landscape",
+  deepDiveHref,
 }: ProjectCardProps) {
   return (
     <article
@@ -79,7 +81,17 @@ export default function ProjectCard({
         </div>
 
         {/* Subtitle */}
-        <p className="text-sm text-[var(--text-secondary)] mb-6">{subtitle}</p>
+        <p className="text-sm text-[var(--text-secondary)] mb-1">{subtitle}</p>
+        {deepDiveHref ? (
+          <Link
+            href={deepDiveHref}
+            className="text-xs text-[var(--accent)] hover:underline mb-6 inline-block"
+          >
+            Nerd out here &rarr;
+          </Link>
+        ) : (
+          <div className="mb-5" />
+        )}
 
         {/* Sections */}
         <div className="flex flex-col gap-4">

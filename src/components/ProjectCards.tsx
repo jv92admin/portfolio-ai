@@ -30,6 +30,7 @@ const projects = [
     isHero: true,
     image: "/images/alfred.jpg",
     imageType: "portrait" as const,
+    deepDiveHref: "/alfred",
   },
   {
     title: "ryesvp",
@@ -119,7 +120,7 @@ export default function ProjectCards() {
         </h2>
         <p className="text-[15px] sm:text-base text-[var(--text-secondary)] mb-2 leading-relaxed">
           Everything below started as a personal problem or a curiosity — none
-          of it was built to be a product or a company.
+          of it was built to be commercial.
         </p>
         <ScrollIndicator />
       </ScrollReveal>

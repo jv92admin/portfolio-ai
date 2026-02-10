@@ -38,6 +38,8 @@ Can use cost-efficient model (Sonnet) for straightforward implementation. Escala
 
 Before writing ANY visual code, read `.claude/docs/design-system.md`. Before adding ANY motion, read the motion choreography specs. This is not a suggestion — it is the first step of every task.
 
+Before building or modifying any technical diagram, read `.claude/docs/technical-illustration-guide.md.`
+
 ### Never Hardcode Visual Values
 
 - **Colors:** Always use CSS custom properties — `var(--background)`, `var(--surface)`, `var(--text-primary)`, `var(--accent)`, etc.

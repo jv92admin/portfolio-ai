@@ -1,18 +1,22 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import StaggerGroup from "@/components/StaggerGroup";
 import ArchitectureDiagram from "@/components/ArchitectureDiagram";
+import RefBoundaryDiagram from "@/components/RefBoundaryDiagram";
+import ContextLayersDiagram from "@/components/ContextLayersDiagram";
+import FeatureGrid from "@/components/FeatureGrid";
+import ContentLifecycleDiagram from "@/components/ContentLifecycleDiagram";
+import DomainBoundaryDiagram from "@/components/DomainBoundaryDiagram";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Alfred — Vignesh Jeyaraman",
   description:
-    "A domain-agnostic multi-agent orchestration framework. Deep dive into the architecture, state management, and design decisions behind Alfred.",
+    "Agentic orchestration for LLMs that read and write real systems. Deep dive into the architecture, state management, and design decisions behind Alfred.",
   openGraph: {
     title: "Alfred — Vignesh Jeyaraman",
     description:
-      "A domain-agnostic multi-agent orchestration framework.",
+      "Agentic orchestration for LLMs that read and write real systems.",
     url: "https://vignesh.ai/alfred",
     siteName: "vignesh.ai",
     type: "website",
@@ -21,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Alfred — Vignesh Jeyaraman",
     description:
-      "A domain-agnostic multi-agent orchestration framework.",
+      "Agentic orchestration for LLMs that read and write real systems.",
   },
 };
 
@@ -31,7 +35,7 @@ export default function AlfredPage() {
       <Header />
       <main className="px-6 max-w-[900px] mx-auto">
         {/* ================================
-            Header Section
+            Page Header
             ================================ */}
         <section className="pt-20 pb-16 sm:pt-28 sm:pb-20">
           <ScrollReveal>
@@ -44,7 +48,13 @@ export default function AlfredPage() {
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <p className="text-lg text-[var(--text-secondary)] mt-3 max-w-[600px]">
-              A domain-agnostic multi-agent orchestration framework
+              Agentic orchestration for LLMs that read and write real systems
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={150}>
+            <p className="text-[var(--text-secondary)] mt-2 max-w-[600px] italic">
+              A domain-agnostic execution engine — cooking was just the test
+              case.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={200}>
@@ -70,23 +80,36 @@ export default function AlfredPage() {
         </section>
 
         {/* ================================
-            Section 1: Architecture Overview
+            Section 1: The Graph
             ================================ */}
         <section className="pb-24">
           <ScrollReveal>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-3">
-              Architecture Overview
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
+              The Graph
             </h2>
-            <p className="text-[var(--text-secondary)] mb-10 max-w-[700px]">
-              Alfred processes every request through a five-agent pipeline.
-              Each agent has a single responsibility, and the framework
-              orchestrates data flow between them.
+            <p className="text-sm font-medium text-[var(--text-secondary)] mb-6">
+              How work actually flows
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <p className="text-[var(--text-secondary)] mb-4 max-w-[700px] leading-relaxed">
+              Requests route, they don&apos;t chain. Simple reads skip planning
+              entirely and take a fast path. Complex tasks expand into a plan and
+              an execution loop. Every path converges at a response and persisted
+              state.
+            </p>
+            <p className="text-[var(--text-secondary)] mb-10 max-w-[700px] leading-relaxed">
+              Five agents, each with a single responsibility. Understand resolves
+              memory and references. Think plans what should happen. Act executes
+              steps, loops tools, and enforces limits. Reply formats outcomes for
+              humans. Summarize records what happened for the next turn.
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={100}>
+          <ScrollReveal delay={200}>
             <div
-              className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10"
+              className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8"
+              aria-label="Pipeline diagram showing how requests route through Alfred's five agents across four distinct paths"
             >
               <ArchitectureDiagram />
             </div>
@@ -94,391 +117,224 @@ export default function AlfredPage() {
         </section>
 
         {/* ================================
-            Section 2: Technical Details
+            Section 2: Tools & Database Objects
             ================================ */}
         <section className="pb-24">
           <ScrollReveal>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-12">
-              Technical Details
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
+              Tools & Database Objects
             </h2>
+            <p className="text-sm font-medium text-[var(--text-secondary)] mb-6">
+              Letting an LLM touch a real system safely
+            </p>
           </ScrollReveal>
-
-          {/* --- SessionIdRegistry --- */}
-          <ScrollReveal>
-            <div className="mb-16">
-              <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
-                SessionIdRegistry -- State Management
-              </h3>
-              <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">
-                The core innovation: a deterministic state layer that translates
-                human-readable references to UUIDs. It prevents LLM hallucination
-                by grounding all state references in real data. The LLM never
-                guesses an identifier -- every reference is resolved through the
-                registry.
+          <ScrollReveal delay={100}>
+            <div className="max-w-[700px] mb-10">
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                <span className="text-[var(--text-primary)] font-medium">
+                  Deterministic entity refs
+                </span>{" "}
+                — <code className="text-[var(--accent)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>recipe_1</code>,{" "}
+                <code className="text-[var(--accent)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>inv_3</code>,{" "}
+                <code className="text-[var(--accent)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>gen_recipe_1</code>.
+                LLMs never see UUIDs.
               </p>
-
-              {/* Resolution flow visual */}
-              <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
-                <div className="p-4 sm:p-6">
-                  <p
-                    className="text-xs text-[var(--text-muted)] mb-4 uppercase tracking-wider"
-                    style={{ fontFamily: "var(--font-mono)" }}
-                  >
-                    Reference Resolution Flow
-                  </p>
-                  <StaggerGroup staggerDelay={120} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-0">
-                    <FlowStep
-                      label="User"
-                      value={`"my pasta recipe"`}
-                      accent={false}
-                    />
-                    <FlowArrow />
-                    <FlowStep
-                      label="Understand"
-                      value="recipe_1"
-                      accent
-                    />
-                    <FlowArrow />
-                    <FlowStep
-                      label="SessionIdRegistry"
-                      value="uuid-abc-123"
-                      accent
-                    />
-                    <FlowArrow />
-                    <FlowStep
-                      label="Act"
-                      value="DB operation with UUID"
-                      accent={false}
-                    />
-                  </StaggerGroup>
-                </div>
-              </div>
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                <span className="text-[var(--text-primary)] font-medium">
+                  Strict CRUD boundary
+                </span>{" "}
+                — Agents operate in ref space. Database operates in UUID space.
+                Translation happens at the boundary, not inside agents.
+              </p>
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                <span className="text-[var(--text-primary)] font-medium">
+                  Approval-aware persistence
+                </span>{" "}
+                — Generated content lives in memory (<code className="text-[var(--accent)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>gen_*</code>).
+                Nothing writes without explicit user promotion.
+              </p>
+              <p className="text-[var(--text-muted)] text-sm mt-6">
+                Prevents identity hallucination, phantom writes, and accidental
+                overwrites.
+              </p>
             </div>
           </ScrollReveal>
 
-          {/* --- Three-Layer Context Model --- */}
-          <ScrollReveal>
-            <div className="mb-16">
-              <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
-                Three-Layer Context Model
-              </h3>
-              <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">
-                Alfred maintains three distinct layers of context, each serving a
-                different purpose in the orchestration pipeline. This separation
-                ensures agents receive only the context they need, reducing token
-                usage and preventing cross-contamination between concerns.
-              </p>
-
-              {/* Stacked layers visual */}
-              <StaggerGroup staggerDelay={150} className="flex flex-col gap-0">
-                <ContextLayer
-                  position="top"
-                  label="Entity Context"
-                  description="References, labels, status of active objects"
-                  color="var(--accent)"
-                />
-                <ContextLayer
-                  position="middle"
-                  label="Conversation Context"
-                  description="Message history and dialogue state"
-                  color="var(--accent-muted)"
-                />
-                <ContextLayer
-                  position="bottom"
-                  label="Reasoning Context"
-                  description="Execution summaries, decision logs, plan outcomes"
-                  color="var(--text-muted)"
-                />
-              </StaggerGroup>
-            </div>
-          </ScrollReveal>
-
-          {/* --- Domain Protocol --- */}
-          <ScrollReveal>
-            <div className="mb-16">
-              <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
-                Domain Protocol -- DomainConfig
-              </h3>
-              <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">
-                Approximately 50 methods define how a domain plugs into Alfred.
-                The CRUD middleware pattern ensures consistent data operations
-                across any domain. The key insight: swap the domain config, keep
-                everything else identical. This is how Alfred stays
-                domain-agnostic.
-              </p>
-
-              {/* Interface boundary visual */}
-              <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6">
-                <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <div className="flex-1 w-full rounded-md border border-[var(--border)] bg-[var(--background)] p-4 text-center">
-                    <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-                      Alfred Core
-                    </p>
-                    <p className="text-xs text-[var(--text-secondary)]">
-                      Agents, orchestration, state
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col items-center gap-1 shrink-0">
-                    <div
-                      className="rounded-md border border-[var(--accent)] px-3 py-1.5"
-                      style={{ background: "var(--accent-glow)" }}
-                    >
-                      <p
-                        className="text-xs font-semibold text-[var(--accent)]"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        DomainConfig
-                      </p>
-                    </div>
-                    <p className="text-[10px] text-[var(--text-muted)]">
-                      ~50 methods
-                    </p>
-                  </div>
-
-                  <div className="flex-1 w-full rounded-md border border-dashed border-[var(--border)] bg-[var(--background)] p-4 text-center">
-                    <p className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-                      Domain
-                    </p>
-                    <p className="text-xs text-[var(--text-secondary)]">
-                      Recipes, FPL, or any domain
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* --- Generated Content Lifecycle --- */}
-          <ScrollReveal>
-            <div className="mb-16">
-              <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
-                Generated Content Lifecycle
-              </h3>
-              <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">
-                AI-generated content moves through defined states before
-                persisting. The user always has control over what gets saved.
-                Nothing generated by the LLM is committed without explicit
-                approval.
-              </p>
-
-              {/* Lifecycle flowchart */}
-              <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6">
-                <StaggerGroup staggerDelay={120} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-0">
-                  <LifecycleStep label="Generated" variant="muted" />
-                  <FlowArrow />
-                  <LifecycleStep label="Pending" variant="accent" />
-                  <FlowArrow />
-                  <div className="flex flex-col gap-2 items-center">
-                    <LifecycleStep label="Approved" variant="success" />
-                    <span className="text-xs text-[var(--text-muted)]">or</span>
-                    <LifecycleStep label="Rejected" variant="error" />
-                  </div>
-                </StaggerGroup>
-              </div>
+          <ScrollReveal delay={200}>
+            <div
+              className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10"
+              aria-label="Boundary diagram showing how references translate to UUIDs through the SessionIdRegistry"
+            >
+              <RefBoundaryDiagram />
             </div>
           </ScrollReveal>
         </section>
 
         {/* ================================
-            Section 3: What I Learned
+            Section 3: What "Context" Means
             ================================ */}
         <section className="pb-24">
           <ScrollReveal>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-8">
-              What I Learned
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
+              What &ldquo;Context&rdquo; Means
             </h2>
+            <p className="text-sm font-medium text-[var(--text-secondary)] mb-6">
+              Why memory is layered, not dumped
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <div className="max-w-[700px] mb-10">
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                Alfred maintains three independent layers of context, each
+                serving a different purpose in the orchestration pipeline. This
+                separation ensures agents receive only the context they need,
+                reducing token usage and preventing cross-contamination between
+                concerns.
+              </p>
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                <span className="text-[var(--text-primary)] font-medium">
+                  Entity Context
+                </span>{" "}
+                is deterministic — refs, labels, lifecycle state. Updated by CRUD
+                operations, not LLM decisions.{" "}
+                <span className="text-[var(--text-primary)] font-medium">
+                  Conversation Context
+                </span>{" "}
+                is compressed — last 3 turns full, older turns summarized.{" "}
+                <span className="text-[var(--text-primary)] font-medium">
+                  Reasoning Context
+                </span>{" "}
+                is auditable — what was planned, executed, and changed.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <div
+              className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10"
+              aria-label="Layer stack diagram showing three context layers and which agents read or write each layer"
+            >
+              <ContextLayersDiagram />
+            </div>
+          </ScrollReveal>
+        </section>
+
+        {/* ================================
+            Section 4: Nifty (but Necessary) Tools
+            ================================ */}
+        <section className="pb-24">
+          <ScrollReveal>
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
+              Nifty (but Necessary) Tools
+            </h2>
+            <p className="text-sm font-medium text-[var(--text-secondary)] mb-8">
+              Features enabled by the architecture
+            </p>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
-            <div className="flex flex-col gap-6 max-w-[700px]">
-              <p className="text-[17px] text-[var(--text-primary)] leading-relaxed">
-                The hardest problem in LLM orchestration is not making agents
-                work -- it is preventing them from corrupting shared state. Once
-                you have multiple agents reading and writing to the same context,
-                every assumption about data integrity gets tested. The bugs are
-                subtle: an agent resolves a reference that no longer exists, or
-                two agents write conflicting updates to the same entity.
+            <FeatureGrid />
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <div
+              className="mt-12 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10"
+              aria-label="State machine diagram showing the generated content lifecycle from creation through user review to persistence or removal"
+            >
+              <p
+                className="text-xs text-[var(--text-muted)] mb-6 uppercase tracking-wider"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Content Lifecycle
               </p>
-              <p className="text-[17px] text-[var(--text-primary)] leading-relaxed">
-                Deterministic systems and nondeterministic models are in constant
-                tension. The SessionIdRegistry was my answer: never let the LLM
-                guess an ID. Every reference flows through a resolution layer that
-                maps human language to real database identifiers. This single
-                decision eliminated an entire class of hallucination bugs.
-              </p>
-              <p className="text-[17px] text-[var(--text-primary)] leading-relaxed">
-                Abstraction boundaries only work if you test them by actually
-                swapping domains -- which is why FPL exists as a project. Building
-                a second domain on top of Alfred forced me to find every place
-                where recipe-specific logic had leaked through the interface. The
-                protocol got better each time something broke.
-              </p>
-              <p className="text-[17px] text-[var(--text-primary)] leading-relaxed">
-                Building with AI taught me that the skill ceiling is not technical
-                knowledge -- it is the ability to decompose problems clearly
-                enough that an LLM can execute them. The better I got at breaking
-                problems into precise, unambiguous steps, the more I could build
-                in less time.
-              </p>
+              <ContentLifecycleDiagram />
             </div>
+          </ScrollReveal>
+        </section>
+
+        {/* ================================
+            Section 5: Abstraction (the point)
+            ================================ */}
+        <section className="pb-24">
+          <ScrollReveal>
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
+              Abstraction
+            </h2>
+            <p className="text-sm font-medium text-[var(--text-secondary)] mb-6">
+              Cooking was the test case
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <div className="max-w-[700px] mb-10">
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                The orchestration graph, entity identity, CRUD execution, context
+                construction, and prompt assembly are all abstracted in core.
+                Domains supply their own entities, schemas, prompts, personas,
+                and optional middleware like semantic search or enrichment.
+              </p>
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                The protocol is DomainConfig: 66 methods (24 abstract, 42 with
+                defaults), plus three extension points — DatabaseAdapter,
+                CRUDMiddleware, and SubdomainCompiler. The import boundary is
+                enforced: core never imports domain.
+              </p>
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                The same refs, the same graph, the same approval model could
+                power fantasy sports (players, teams, transfers), personal
+                finance (accounts, transactions, budgets), or any
+                entity-oriented domain.
+              </p>
+              <blockquote className="border-l-2 border-[var(--accent)] pl-4 mt-6">
+                <p className="text-[var(--text-primary)] italic">
+                  You don&apos;t trust an abstraction until you build a second
+                  implementation.
+                </p>
+              </blockquote>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <div
+              className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10"
+              aria-label="Boundary diagram showing the separation between Alfred Core and Domain implementations through the protocol interface"
+            >
+              <DomainBoundaryDiagram />
+            </div>
+          </ScrollReveal>
+        </section>
+
+        {/* ================================
+            Section 6: Why This Exists
+            ================================ */}
+        <section className="pb-24">
+          <ScrollReveal>
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
+              Why This Exists
+            </h2>
+            <p className="text-sm font-medium text-[var(--text-secondary)] mb-8">
+              What I wanted to understand
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <ul className="flex flex-col gap-4 max-w-[700px]">
+              <li className="text-[17px] text-[var(--text-primary)] leading-relaxed">
+                How to let LLMs act on real systems without lying
+              </li>
+              <li className="text-[17px] text-[var(--text-primary)] leading-relaxed">
+                How to manage identity, state, and memory explicitly
+              </li>
+              <li className="text-[17px] text-[var(--text-primary)] leading-relaxed">
+                How to move beyond &ldquo;agent demos&rdquo; into orchestration
+                that works
+              </li>
+            </ul>
+            <p className="text-[var(--text-secondary)] mt-8">
+              This is the result.
+            </p>
           </ScrollReveal>
         </section>
       </main>
       <Footer />
-    </div>
-  );
-}
-
-/* ================================
-   Sub-components: visuals
-   ================================ */
-
-function FlowStep({
-  label,
-  value,
-  accent,
-}: {
-  label: string;
-  value: string;
-  accent: boolean;
-}) {
-  return (
-    <div className="flex-1 min-w-0 rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-2.5 text-center">
-      <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
-        {label}
-      </p>
-      <p
-        className={`text-xs truncate ${accent ? "text-[var(--accent)]" : "text-[var(--text-primary)]"}`}
-        style={{ fontFamily: "var(--font-mono)" }}
-      >
-        {value}
-      </p>
-    </div>
-  );
-}
-
-function FlowArrow() {
-  return (
-    <div className="flex items-center justify-center shrink-0 w-6 h-6 sm:w-8">
-      {/* Horizontal arrow on sm+, vertical on mobile */}
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        className="hidden sm:block"
-        aria-hidden="true"
-      >
-        <line
-          x1="2"
-          y1="10"
-          x2="16"
-          y2="10"
-          stroke="var(--accent)"
-          strokeWidth="1.5"
-        />
-        <polygon points="14,6 20,10 14,14" fill="var(--accent)" />
-      </svg>
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        className="block sm:hidden"
-        aria-hidden="true"
-      >
-        <line
-          x1="10"
-          y1="2"
-          x2="10"
-          y2="16"
-          stroke="var(--accent)"
-          strokeWidth="1.5"
-        />
-        <polygon points="6,14 10,20 14,14" fill="var(--accent)" />
-      </svg>
-    </div>
-  );
-}
-
-function ContextLayer({
-  position,
-  label,
-  description,
-  color,
-}: {
-  position: "top" | "middle" | "bottom";
-  label: string;
-  description: string;
-  color: string;
-}) {
-  const roundedClass =
-    position === "top"
-      ? "rounded-t-lg"
-      : position === "bottom"
-        ? "rounded-b-lg"
-        : "";
-
-  return (
-    <div
-      className={`border border-[var(--border)] bg-[var(--surface)] px-6 py-4 ${roundedClass} ${position !== "top" ? "-mt-px" : ""}`}
-      style={{ borderLeftColor: color, borderLeftWidth: "3px" }}
-    >
-      <p className="text-sm font-semibold text-[var(--text-primary)]">
-        {label}
-      </p>
-      <p className="text-xs text-[var(--text-secondary)] mt-0.5">
-        {description}
-      </p>
-    </div>
-  );
-}
-
-function LifecycleStep({
-  label,
-  variant,
-}: {
-  label: string;
-  variant: "muted" | "accent" | "success" | "error";
-}) {
-  const styles: Record<string, { border: string; text: string; bg: string }> = {
-    muted: {
-      border: "var(--border)",
-      text: "var(--text-secondary)",
-      bg: "var(--background)",
-    },
-    accent: {
-      border: "var(--accent)",
-      text: "var(--accent)",
-      bg: "var(--accent-glow)",
-    },
-    success: {
-      border: "var(--accent)",
-      text: "var(--accent)",
-      bg: "var(--accent-glow)",
-    },
-    error: {
-      border: "var(--error)",
-      text: "var(--error)",
-      bg: "var(--error-glow)",
-    },
-  };
-
-  const s = styles[variant];
-
-  return (
-    <div
-      className="rounded-md px-4 py-2 text-center"
-      style={{
-        border: `1px solid ${s.border}`,
-        background: s.bg,
-      }}
-    >
-      <p
-        className="text-sm font-medium"
-        style={{ color: s.text, fontFamily: "var(--font-mono)" }}
-      >
-        {label}
-      </p>
     </div>
   );
 }

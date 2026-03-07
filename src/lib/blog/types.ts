@@ -12,6 +12,7 @@ export interface PostFrontmatter {
 export interface PostMeta extends PostFrontmatter {
   slug: string;
   readTime: string;
+  deepReadTime: string | null;
 }
 
 export interface Post extends PostMeta {

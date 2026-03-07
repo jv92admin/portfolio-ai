@@ -42,7 +42,15 @@ export default function BlogIndex() {
                 <p className="text-[var(--text-secondary)] mt-1">
                   {post.tagline}
                 </p>
-                <div className="flex gap-3 mt-2 text-sm text-[var(--text-muted)]">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-sm text-[var(--text-muted)]">
+                  {post.track && (
+                    <>
+                      <span className="text-[var(--accent)] font-medium text-xs uppercase tracking-wider">
+                        {post.track}
+                      </span>
+                      <span>·</span>
+                    </>
+                  )}
                   <span>
                     {new Date(post.date).toLocaleDateString("en-US", {
                       year: "numeric",
@@ -51,7 +59,14 @@ export default function BlogIndex() {
                     })}
                   </span>
                   <span>·</span>
-                  <span>{post.readTime}</span>
+                  <span>
+                    {post.readTime}
+                    {post.deepReadTime && (
+                      <span className="text-[var(--text-muted)]">
+                        {" "}· {post.deepReadTime} with deep dives
+                      </span>
+                    )}
+                  </span>
                 </div>
               </Link>
             ))}

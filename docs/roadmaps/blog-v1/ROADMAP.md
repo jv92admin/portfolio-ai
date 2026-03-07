@@ -1,7 +1,7 @@
 # Blog v1 Roadmap
 
 **Status:** In Progress
-**Phases:** 1 / 4
+**Phases:** 3 / 4
 
 ---
 
@@ -14,8 +14,8 @@ Add a `/blog` section to vignesh.ai with long-form posts authored in MDX and a s
 | # | Phase | Status | Summary |
 |---|-------|--------|---------|
 | 0 | MDX infrastructure | Complete | Next.js MDX setup, content loading utilities, slug-based routing |
-| 1 | RabbitHole component + blog typography | Not Started | The core interactive component, long-form reading styles, code blocks |
-| 2 | Blog pages (index + post) | Not Started | `/blog` index page, `/blog/[slug]` post page, nav integration, read time |
+| 1 | RabbitHole component + blog typography | Complete | The core interactive component, long-form reading styles, code blocks |
+| 2 | Blog pages (index + post) | Complete | Track labels, tag pills, dual read time, nav integration |
 | 3 | Sample post + polish | Not Started | Write a real test post exercising all features, tag styling, responsive QA |
 
 ## Exit Criteria (milestone-level)

@@ -55,7 +55,7 @@ export default async function BlogPost({ params }: PageProps) {
             {post.title}
           </h1>
           <p className="text-[var(--text-secondary)] mt-2">{post.tagline}</p>
-          <div className="flex gap-3 mt-3 text-sm text-[var(--text-muted)]">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-3 text-sm text-[var(--text-muted)]">
             <span>
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -64,8 +64,25 @@ export default async function BlogPost({ params }: PageProps) {
               })}
             </span>
             <span>·</span>
-            <span>{post.readTime}</span>
+            <span>
+              {post.readTime}
+              {post.deepReadTime && (
+                <span> · {post.deepReadTime} with deep dives</span>
+              )}
+            </span>
           </div>
+          {post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs font-medium px-2.5 py-1 rounded-full border border-[var(--border)] text-[var(--text-secondary)]"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </header>
 
         <article className="blog-prose">

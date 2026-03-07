@@ -12,6 +12,24 @@ const mdxComponents = {
   RabbitHole,
 };
 
+const RABBIT_HOLE_RE = /<RabbitHole[^>]*>[\s\S]*?<\/RabbitHole>/g;
+
+function stripRabbitHoles(content: string): string {
+  return content.replace(RABBIT_HOLE_RE, "");
+}
+
+function computeReadTimes(rawContent: string) {
+  const mainBody = stripRabbitHoles(rawContent);
+  const fullText = rawContent;
+  const mainTime = readingTime(mainBody).text;
+  const fullTime = readingTime(fullText).text;
+  const hasDeepContent = mainTime !== fullTime;
+  return {
+    readTime: mainTime,
+    deepReadTime: hasDeepContent ? fullTime : null,
+  };
+}
+
 export function getAllSlugs(): string[] {
   return fs
     .readdirSync(CONTENT_DIR)
@@ -35,7 +53,7 @@ export function getAllPosts(): PostMeta[] {
       return {
         ...frontmatter,
         slug,
-        readTime: readingTime(content).text,
+        ...computeReadTimes(content),
       };
     })
     .filter((post): post is PostMeta => post !== null);
@@ -65,7 +83,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   return {
     ...frontmatter,
     slug,
-    readTime: readingTime(rawContent).text,
+    ...computeReadTimes(rawContent),
     content,
   };
 }

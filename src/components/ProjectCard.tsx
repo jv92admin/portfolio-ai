@@ -26,6 +26,7 @@ interface ProjectCardProps {
   image?: string;
   imageType?: "portrait" | "landscape";
   deepDiveHref?: string;
+  installCommand?: string;
 }
 
 export default function ProjectCard({
@@ -44,6 +45,7 @@ export default function ProjectCard({
   image,
   imageType = "landscape",
   deepDiveHref,
+  installCommand,
 }: ProjectCardProps) {
   return (
     <article
@@ -82,6 +84,18 @@ export default function ProjectCard({
 
         {/* Subtitle */}
         <p className="text-sm text-[var(--text-secondary)] mb-1">{subtitle}</p>
+
+        {/* Install command */}
+        {installCommand && (
+          <div
+            className="inline-flex items-center gap-2 mt-2 mb-1 rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-1.5"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            <span className="text-xs text-[var(--text-muted)]">$</span>
+            <code className="text-sm text-[var(--accent)]">{installCommand}</code>
+          </div>
+        )}
+
         {deepDiveHref ? (
           <Link
             href={deepDiveHref}

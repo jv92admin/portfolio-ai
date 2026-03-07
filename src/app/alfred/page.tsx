@@ -7,6 +7,7 @@ import ContextLayersDiagram from "@/components/ContextLayersDiagram";
 import FeatureGrid from "@/components/FeatureGrid";
 import ContentLifecycleDiagram from "@/components/ContentLifecycleDiagram";
 import DomainBoundaryDiagram from "@/components/DomainBoundaryDiagram";
+import UseCaseShowcase from "@/components/UseCaseShowcase";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -53,29 +54,66 @@ export default function AlfredPage() {
           </ScrollReveal>
           <ScrollReveal delay={150}>
             <p className="text-[var(--text-secondary)] mt-2 max-w-[600px] italic">
-              A domain-agnostic execution engine — cooking was just the test
-              case.
+              Published on PyPI. Three domains validated. 164 tests passing.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <a
-              href="https://github.com/jv92admin/alfredagain"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-6 text-sm text-[var(--accent)] hover:underline transition-colors"
-              style={{ transitionDuration: "var(--duration-hover)" }}
+            <div
+              className="inline-flex items-center gap-2 mt-6 rounded-md border border-[var(--border)] bg-[var(--surface)] px-4 py-2"
+              style={{ fontFamily: "var(--font-mono)" }}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                aria-hidden="true"
+              <span className="text-sm text-[var(--text-muted)]">$</span>
+              <code className="text-sm text-[var(--text-primary)]">pip install alfredagain</code>
+              <span className="text-xs font-medium text-[var(--accent)] border border-[var(--accent-muted)] rounded-full px-2 py-0.5 ml-2">
+                v2.4.2
+              </span>
+            </div>
+            <div className="flex items-center gap-4 mt-4">
+              <a
+                href="https://github.com/jv92admin/alfredagain"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-[var(--accent)] hover:underline transition-colors"
+                style={{ transitionDuration: "var(--duration-hover)" }}
               >
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-              </svg>
-              View on GitHub
-            </a>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                </svg>
+                View on GitHub
+              </a>
+              <a
+                href="https://pypi.org/project/alfredagain/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-[var(--accent)] hover:underline transition-colors"
+                style={{ transitionDuration: "var(--duration-hover)" }}
+              >
+                View on PyPI
+              </a>
+            </div>
+          </ScrollReveal>
+        </section>
+
+        {/* ================================
+            Use Cases
+            ================================ */}
+        <section className="pb-24">
+          <ScrollReveal>
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
+              Three Domains, One Engine
+            </h2>
+            <p className="text-sm font-medium text-[var(--text-secondary)] mb-8">
+              Same graph. Same protocol. Different data.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <UseCaseShowcase />
           </ScrollReveal>
         </section>
 
@@ -261,7 +299,7 @@ export default function AlfredPage() {
               Abstraction
             </h2>
             <p className="text-sm font-medium text-[var(--text-secondary)] mb-6">
-              Cooking was the test case
+              Three domains proved the protocol
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
@@ -273,21 +311,23 @@ export default function AlfredPage() {
                 and optional middleware like semantic search or enrichment.
               </p>
               <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
-                The protocol is DomainConfig: 66 methods (24 abstract, 42 with
+                The protocol is DomainConfig: 73 methods (23 abstract, 50 with
                 defaults), plus three extension points — DatabaseAdapter,
                 CRUDMiddleware, and SubdomainCompiler. The import boundary is
                 enforced: core never imports domain.
               </p>
               <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
-                The same refs, the same graph, the same approval model could
-                power fantasy sports (players, teams, transfers), personal
-                finance (accounts, transactions, budgets), or any
-                entity-oriented domain.
+                The same refs, the same graph, the same approval model now power
+                three domains: Kitchen (the reference implementation), FPL
+                (fantasy sports analytics on live data), and CRM (enterprise
+                customer management). Each proved a different constraint —
+                entity scale, external API integration, and enterprise data
+                modeling.
               </p>
               <blockquote className="border-l-2 border-[var(--accent)] pl-4 mt-6">
                 <p className="text-[var(--text-primary)] italic">
-                  You don&apos;t trust an abstraction until you build a second
-                  implementation.
+                  You don&apos;t trust an abstraction until you&apos;ve built
+                  three implementations.
                 </p>
               </blockquote>
             </div>

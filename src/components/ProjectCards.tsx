@@ -10,14 +10,19 @@ const projects = [
     title: "alfred(again)",
     subtitle: "A domain-agnostic multi-agent orchestration framework",
     problem:
-      "I love to cook. I hate planning what to cook. What if I could build an AI that handles meal planning, recipe management, and grocery coordination for me?",
-    built: "The first Alfred didn't survive its own complexity — I learned more from killing it than building it. The second attempt became a five-agent orchestration system with deterministic state management, a three-layer context model, and a pluggable domain protocol — now being extracted into a standalone Python package.",
+      "Most agent frameworks demo well but break in production. I wanted to build one that actually orchestrates real systems — with deterministic state, strict identity boundaries, and a protocol that forces you to think before you ship a new domain.",
+    built: "A five-agent orchestration engine on LangGraph, published on PyPI as alfredagain (v2.4.2). 73-method DomainConfig protocol. 164 tests. Three validated domains: Kitchen (reference implementation), FPL (analytics), and CRM (enterprise consulting).",
     learned:
       "Why deterministic systems matter when LLMs are nondeterministic. How to design abstraction boundaries that actually hold. That the hardest problem in orchestration isn't the agents — it's the state.",
     links: [
       { label: "Learn more", href: "/alfred", external: false },
       {
-        label: "Try Alfred",
+        label: "PyPI",
+        href: "https://pypi.org/project/alfredagain/",
+        external: true,
+      },
+      {
+        label: "Kitchen Demo",
         href: "https://alfredagain-production.up.railway.app/",
         external: true,
       },
@@ -27,6 +32,7 @@ const projects = [
         external: true,
       },
     ],
+    installCommand: "pip install alfredagain",
     isHero: true,
     image: "/images/alfred.jpg",
     imageType: "portrait" as const,

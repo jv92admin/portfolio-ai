@@ -98,7 +98,7 @@ export default function DomainBoundaryDiagram() {
               ))}
             </div>
             <p className="text-[10px] text-[var(--text-muted)] mt-3 text-center">
-              24 abstract / 42 default
+              23 abstract / 50 default
             </p>
           </div>
 
@@ -127,16 +127,22 @@ export default function DomainBoundaryDiagram() {
                   10 entities, 7 subdomains
                 </p>
               </div>
-              {/* FPL — ghost/future state */}
-              <div
-                className="rounded-md border border-dashed border-[var(--border)] px-3 py-2"
-                style={{ opacity: 0.5 }}
-              >
+              {/* FPL */}
+              <div className="rounded-md border border-[var(--border)] bg-[var(--surface)] px-3 py-2">
                 <p className="text-[13px] font-medium text-[var(--text-primary)]">
                   FPL
                 </p>
                 <p className="text-[11px] text-[var(--text-secondary)]">
-                  same protocol, different data
+                  Live FPL API, player entities
+                </p>
+              </div>
+              {/* CRM */}
+              <div className="rounded-md border border-[var(--border)] bg-[var(--surface)] px-3 py-2">
+                <p className="text-[13px] font-medium text-[var(--text-primary)]">
+                  CRM
+                </p>
+                <p className="text-[11px] text-[var(--text-secondary)]">
+                  Accounts, contacts, pipelines
                 </p>
               </div>
             </div>
@@ -229,7 +235,7 @@ export default function DomainBoundaryDiagram() {
             ))}
           </div>
           <p className="text-[10px] text-[var(--text-muted)] mt-2">
-            24 abstract / 42 default
+            23 abstract / 50 default
           </p>
         </div>
 
@@ -256,15 +262,20 @@ export default function DomainBoundaryDiagram() {
                 10 entities, 7 subdomains
               </p>
             </div>
-            <div
-              className="rounded-md border border-dashed border-[var(--border)] px-3 py-2"
-              style={{ opacity: 0.5 }}
-            >
+            <div className="rounded-md border border-[var(--border)] bg-[var(--surface)] px-3 py-2">
               <p className="text-[13px] font-medium text-[var(--text-primary)]">
                 FPL
               </p>
               <p className="text-[11px] text-[var(--text-secondary)]">
-                same protocol, different data
+                Live FPL API, player entities
+              </p>
+            </div>
+            <div className="rounded-md border border-[var(--border)] bg-[var(--surface)] px-3 py-2">
+              <p className="text-[13px] font-medium text-[var(--text-primary)]">
+                CRM
+              </p>
+              <p className="text-[11px] text-[var(--text-secondary)]">
+                Accounts, contacts, pipelines
               </p>
             </div>
           </div>

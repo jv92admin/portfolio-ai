@@ -4,20 +4,18 @@ import ScrollReveal from "@/components/ScrollReveal";
 import ArchitectureDiagram from "@/components/ArchitectureDiagram";
 import RefBoundaryDiagram from "@/components/RefBoundaryDiagram";
 import ContextLayersDiagram from "@/components/ContextLayersDiagram";
-import FeatureGrid from "@/components/FeatureGrid";
 import ContentLifecycleDiagram from "@/components/ContentLifecycleDiagram";
-import DomainBoundaryDiagram from "@/components/DomainBoundaryDiagram";
 import UseCaseShowcase from "@/components/UseCaseShowcase";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Alfred — Vignesh Jeyaraman",
   description:
-    "Agentic orchestration for LLMs that read and write real systems. Deep dive into the architecture, state management, and design decisions behind Alfred.",
+    "Domain-agnostic LLM orchestration engine that snaps onto any database-backed system. Deep dive into the architecture, identity model, and design decisions behind Alfred.",
   openGraph: {
     title: "Alfred — Vignesh Jeyaraman",
     description:
-      "Agentic orchestration for LLMs that read and write real systems.",
+      "Domain-agnostic LLM orchestration that snaps onto any database-backed system.",
     url: "https://vignesh.ai/alfred",
     siteName: "vignesh.ai",
     type: "website",
@@ -26,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Alfred — Vignesh Jeyaraman",
     description:
-      "Agentic orchestration for LLMs that read and write real systems.",
+      "Domain-agnostic LLM orchestration that snaps onto any database-backed system.",
   },
 };
 
@@ -36,7 +34,7 @@ export default function AlfredPage() {
       <Header />
       <main className="px-6 max-w-[900px] mx-auto">
         {/* ================================
-            Page Header
+            Section 1: Hero
             ================================ */}
         <section className="pt-20 pb-16 sm:pt-28 sm:pb-20">
           <ScrollReveal>
@@ -53,8 +51,13 @@ export default function AlfredPage() {
             </p>
           </ScrollReveal>
           <ScrollReveal delay={150}>
-            <p className="text-[var(--text-secondary)] mt-2 max-w-[600px] italic">
-              Published on PyPI. Three domains validated. 164 tests passing.
+            <p className="text-[var(--text-secondary)] mt-4 max-w-[650px] leading-relaxed">
+              Alfred is an orchestration engine that sits between an LLM and any
+              database-backed system. You define what your data looks like, how
+              intent maps to subdomains, and what persona the LLM should adopt
+              in each context. Alfred handles routing, planning, tool execution,
+              memory, and safety. It&apos;s published on PyPI and
+              domain-agnostic by design.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={200}>
@@ -101,7 +104,47 @@ export default function AlfredPage() {
         </section>
 
         {/* ================================
-            Use Cases
+            Section 2: Depth of Customization
+            ================================ */}
+        <section className="pb-24">
+          <ScrollReveal>
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
+              Depth of Customization
+            </h2>
+            <p className="text-sm font-medium text-[var(--text-secondary)] mb-6">
+              Tools, subdomains, and personas combine endlessly
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <div className="max-w-[700px]">
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                A domain defines its entities — what lives in the database.
+                It groups those entities into subdomains — logical clusters
+                that map to how users actually think and talk. Each subdomain
+                gets its own persona: a set of instructions that shape how the
+                LLM reasons, what it prioritizes, and how it speaks.
+              </p>
+              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                On top of that, a domain supplies middleware — hooks that run
+                before and after every read or write — and custom tools that
+                extend what the LLM can do beyond standard CRUD. Semantic
+                search, ingredient lookups, email composition, chart
+                generation — whatever the domain needs.
+              </p>
+              <p className="text-[var(--text-secondary)] leading-relaxed">
+                These layers multiply each other. A domain with six subdomains,
+                each with its own persona, middleware that converts currencies
+                and strips sensitive fields, and a custom tool for sending
+                emails — that&apos;s not configuration. That&apos;s composition.
+                The surface area for domain-specific behavior is intentionally
+                deep.
+              </p>
+            </div>
+          </ScrollReveal>
+        </section>
+
+        {/* ================================
+            Section 3: Three Domains as Proof
             ================================ */}
         <section className="pb-24">
           <ScrollReveal>
@@ -109,16 +152,24 @@ export default function AlfredPage() {
               Three Domains, One Engine
             </h2>
             <p className="text-sm font-medium text-[var(--text-secondary)] mb-8">
-              Same graph. Same protocol. Different data.
+              Same engine. Different minds.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <UseCaseShowcase />
           </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <blockquote className="border-l-2 border-[var(--accent)] pl-4 mt-10">
+              <p className="text-[var(--text-primary)] italic">
+                You don&apos;t trust an abstraction until you&apos;ve
+                tested its limits.
+              </p>
+            </blockquote>
+          </ScrollReveal>
         </section>
 
         {/* ================================
-            Section 1: The Graph
+            Section 4: The Graph
             ================================ */}
         <section className="pb-24">
           <ScrollReveal>
@@ -132,15 +183,19 @@ export default function AlfredPage() {
           <ScrollReveal delay={100}>
             <p className="text-[var(--text-secondary)] mb-4 max-w-[700px] leading-relaxed">
               Requests route, they don&apos;t chain. Simple reads skip planning
-              entirely and take a fast path. Complex tasks expand into a plan and
-              an execution loop. Every path converges at a response and persisted
-              state.
+              entirely — Understand detects quick-mode and sends them straight
+              to execution. Complex tasks expand into a plan with parallelizable
+              step groups. Every path converges at a response and persisted state.
             </p>
             <p className="text-[var(--text-secondary)] mb-10 max-w-[700px] leading-relaxed">
-              Five agents, each with a single responsibility. Understand resolves
-              memory and references. Think plans what should happen. Act executes
-              steps, loops tools, and enforces limits. Reply formats outcomes for
-              humans. Summarize records what happened for the next turn.
+              Five agents, each with a single responsibility. Understand
+              resolves references and curates what stays in memory. Think
+              decomposes intent into typed steps and decides whether to execute
+              immediately, propose first, or ask for clarification. Act loops
+              tools — CRUD operations plus any domain-specific tools — with
+              retry limits and parallel execution within groups. Reply formats
+              outcomes for humans. Summarize compresses the turn and persists
+              the entity registry for next time.
             </p>
           </ScrollReveal>
 
@@ -155,50 +210,83 @@ export default function AlfredPage() {
         </section>
 
         {/* ================================
-            Section 2: Tools & Database Objects
+            Section 5: How It Keeps LLMs Honest
             ================================ */}
         <section className="pb-24">
           <ScrollReveal>
             <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
-              Tools & Database Objects
+              How It Keeps LLMs Honest
             </h2>
             <p className="text-sm font-medium text-[var(--text-secondary)] mb-6">
-              Letting an LLM touch a real system safely
+              Entity identity, approval, and layered context
             </p>
           </ScrollReveal>
           <ScrollReveal delay={100}>
+            <p className="text-[var(--text-secondary)] mb-10 max-w-[700px] leading-relaxed">
+              LLMs hallucinate identifiers, write without permission, and lose
+              track of what they&apos;ve done. Alfred addresses each with a
+              specific mechanism: deterministic entity refs, an approval model
+              for generated content, and three independent context layers that
+              give each agent only what it needs.
+            </p>
+          </ScrollReveal>
+
+          {/* Subsection A: Entity Identity & Approval */}
+          <ScrollReveal delay={150}>
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
+              Entity Identity & Approval
+            </h3>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
             <div className="max-w-[700px] mb-10">
               <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
                 <span className="text-[var(--text-primary)] font-medium">
                   Deterministic entity refs
                 </span>{" "}
-                — <code className="text-[var(--accent)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>recipe_1</code>,{" "}
-                <code className="text-[var(--accent)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>inv_3</code>,{" "}
-                <code className="text-[var(--accent)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>gen_recipe_1</code>.
+                — Every database record gets a human-readable ref like{" "}
+                <span
+                  className="text-[var(--accent)] text-sm"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  recipe_1
+                </span>{" "}
+                or{" "}
+                <span
+                  className="text-[var(--accent)] text-sm"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  deal_3
+                </span>
+                . Counters are monotonic and never reset within a session.
                 LLMs never see UUIDs.
               </p>
               <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
                 <span className="text-[var(--text-primary)] font-medium">
                   Strict CRUD boundary
                 </span>{" "}
-                — Agents operate in ref space. Database operates in UUID space.
-                Translation happens at the boundary, not inside agents.
+                — Agents operate in ref space. The database operates in UUID
+                space. Translation happens at the boundary through a single
+                registry, not inside agents.
               </p>
-              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+              <p className="text-[var(--text-secondary)] leading-relaxed">
                 <span className="text-[var(--text-primary)] font-medium">
                   Approval-aware persistence
                 </span>{" "}
-                — Generated content lives in memory (<code className="text-[var(--accent)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>gen_*</code>).
-                Nothing writes without explicit user promotion.
-              </p>
-              <p className="text-[var(--text-muted)] text-sm mt-6">
-                Prevents identity hallucination, phantom writes, and accidental
-                overwrites.
+                — Generated content lives in memory with a{" "}
+                <span
+                  className="text-[var(--accent)] text-sm"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  gen_*
+                </span>{" "}
+                prefix. Nothing writes to the database without explicit user
+                promotion. The lifecycle is: generate, hold in memory, present
+                for review, persist only on approval.
               </p>
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={200}>
+          <ScrollReveal delay={250}>
             <div
               className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10"
               aria-label="Boundary diagram showing how references translate to UUIDs through the SessionIdRegistry"
@@ -206,30 +294,37 @@ export default function AlfredPage() {
               <RefBoundaryDiagram />
             </div>
           </ScrollReveal>
-        </section>
 
-        {/* ================================
-            Section 3: What "Context" Means
-            ================================ */}
-        <section className="pb-24">
-          <ScrollReveal>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
-              What &ldquo;Context&rdquo; Means
-            </h2>
-            <p className="text-sm font-medium text-[var(--text-secondary)] mb-6">
-              Why memory is layered, not dumped
-            </p>
-          </ScrollReveal>
           <ScrollReveal delay={100}>
+            <div
+              className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10"
+              aria-label="State machine diagram showing the generated content lifecycle from creation through user review to persistence or removal"
+            >
+              <p
+                className="text-xs text-[var(--text-muted)] mb-6 uppercase tracking-wider"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Content Lifecycle
+              </p>
+              <ContentLifecycleDiagram />
+            </div>
+          </ScrollReveal>
+
+          {/* Subsection B: Layered Context */}
+          <ScrollReveal delay={100}>
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mt-16 mb-4">
+              Layered Context
+            </h3>
+          </ScrollReveal>
+          <ScrollReveal delay={150}>
             <div className="max-w-[700px] mb-10">
               <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
                 Alfred maintains three independent layers of context, each
-                serving a different purpose in the orchestration pipeline. This
-                separation ensures agents receive only the context they need,
-                reducing token usage and preventing cross-contamination between
-                concerns.
+                serving a different purpose in the pipeline. This separation
+                ensures agents receive only the context they need, reducing
+                token waste and preventing cross-contamination between concerns.
               </p>
-              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+              <p className="text-[var(--text-secondary)] leading-relaxed">
                 <span className="text-[var(--text-primary)] font-medium">
                   Entity Context
                 </span>{" "}
@@ -238,7 +333,7 @@ export default function AlfredPage() {
                 <span className="text-[var(--text-primary)] font-medium">
                   Conversation Context
                 </span>{" "}
-                is compressed — last 3 turns full, older turns summarized.{" "}
+                is compressed — last three turns in full, older turns summarized.{" "}
                 <span className="text-[var(--text-primary)] font-medium">
                   Reasoning Context
                 </span>{" "}
@@ -254,123 +349,6 @@ export default function AlfredPage() {
             >
               <ContextLayersDiagram />
             </div>
-          </ScrollReveal>
-        </section>
-
-        {/* ================================
-            Section 4: Nifty (but Necessary) Tools
-            ================================ */}
-        <section className="pb-24">
-          <ScrollReveal>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
-              Nifty (but Necessary) Tools
-            </h2>
-            <p className="text-sm font-medium text-[var(--text-secondary)] mb-8">
-              Features enabled by the architecture
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal delay={100}>
-            <FeatureGrid />
-          </ScrollReveal>
-
-          <ScrollReveal delay={200}>
-            <div
-              className="mt-12 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10"
-              aria-label="State machine diagram showing the generated content lifecycle from creation through user review to persistence or removal"
-            >
-              <p
-                className="text-xs text-[var(--text-muted)] mb-6 uppercase tracking-wider"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                Content Lifecycle
-              </p>
-              <ContentLifecycleDiagram />
-            </div>
-          </ScrollReveal>
-        </section>
-
-        {/* ================================
-            Section 5: Abstraction (the point)
-            ================================ */}
-        <section className="pb-24">
-          <ScrollReveal>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
-              Abstraction
-            </h2>
-            <p className="text-sm font-medium text-[var(--text-secondary)] mb-6">
-              Three domains proved the protocol
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <div className="max-w-[700px] mb-10">
-              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
-                The orchestration graph, entity identity, CRUD execution, context
-                construction, and prompt assembly are all abstracted in core.
-                Domains supply their own entities, schemas, prompts, personas,
-                and optional middleware like semantic search or enrichment.
-              </p>
-              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
-                The protocol is DomainConfig: 73 methods (23 abstract, 50 with
-                defaults), plus three extension points — DatabaseAdapter,
-                CRUDMiddleware, and SubdomainCompiler. The import boundary is
-                enforced: core never imports domain.
-              </p>
-              <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
-                The same refs, the same graph, the same approval model now power
-                three domains: Kitchen (the reference implementation), FPL
-                (fantasy sports analytics on live data), and CRM (enterprise
-                customer management). Each proved a different constraint —
-                entity scale, external API integration, and enterprise data
-                modeling.
-              </p>
-              <blockquote className="border-l-2 border-[var(--accent)] pl-4 mt-6">
-                <p className="text-[var(--text-primary)] italic">
-                  You don&apos;t trust an abstraction until you&apos;ve built
-                  three implementations.
-                </p>
-              </blockquote>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={200}>
-            <div
-              className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10"
-              aria-label="Boundary diagram showing the separation between Alfred Core and Domain implementations through the protocol interface"
-            >
-              <DomainBoundaryDiagram />
-            </div>
-          </ScrollReveal>
-        </section>
-
-        {/* ================================
-            Section 6: Why This Exists
-            ================================ */}
-        <section className="pb-24">
-          <ScrollReveal>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
-              Why This Exists
-            </h2>
-            <p className="text-sm font-medium text-[var(--text-secondary)] mb-8">
-              What I wanted to understand
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <ul className="flex flex-col gap-4 max-w-[700px]">
-              <li className="text-[17px] text-[var(--text-primary)] leading-relaxed">
-                How to let LLMs act on real systems without lying
-              </li>
-              <li className="text-[17px] text-[var(--text-primary)] leading-relaxed">
-                How to manage identity, state, and memory explicitly
-              </li>
-              <li className="text-[17px] text-[var(--text-primary)] leading-relaxed">
-                How to move beyond &ldquo;agent demos&rdquo; into orchestration
-                that works
-              </li>
-            </ul>
-            <p className="text-[var(--text-secondary)] mt-8">
-              This is the result.
-            </p>
           </ScrollReveal>
         </section>
       </main>

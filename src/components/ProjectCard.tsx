@@ -27,6 +27,7 @@ interface ProjectCardProps {
   imageType?: "portrait" | "landscape";
   deepDiveHref?: string;
   installCommand?: string;
+  customVisual?: ReactNode;
 }
 
 export default function ProjectCard({
@@ -46,6 +47,7 @@ export default function ProjectCard({
   imageType = "landscape",
   deepDiveHref,
   installCommand,
+  customVisual,
 }: ProjectCardProps) {
   return (
     <article
@@ -85,27 +87,31 @@ export default function ProjectCard({
         {/* Subtitle */}
         <p className="text-sm text-[var(--text-secondary)] mb-1">{subtitle}</p>
 
-        {/* Install command */}
-        {installCommand && (
-          <div
-            className="inline-flex items-center gap-2 mt-2 mb-1 rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-1.5"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            <span className="text-xs text-[var(--text-muted)]">$</span>
-            <code className="text-sm text-[var(--accent)]">{installCommand}</code>
+        {/* Install command + deep dive chip */}
+        {(installCommand || deepDiveHref) && (
+          <div className="flex flex-wrap items-center gap-3 mt-2 mb-5">
+            {installCommand && (
+              <div
+                className="inline-flex items-center gap-2 rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-1.5"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                <span className="text-xs text-[var(--text-muted)]">$</span>
+                <code className="text-sm text-[var(--accent)]">{installCommand}</code>
+              </div>
+            )}
+            {deepDiveHref && (
+              <Link
+                href={deepDiveHref}
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--accent)] border border-[var(--accent-muted)] rounded-full px-3 py-1.5 hover:bg-[var(--accent-glow)] transition-colors"
+                style={{ transitionDuration: "var(--duration-hover)" }}
+              >
+                Deep dive &rarr;
+              </Link>
+            )}
           </div>
         )}
 
-        {deepDiveHref ? (
-          <Link
-            href={deepDiveHref}
-            className="text-xs text-[var(--accent)] hover:underline mb-6 inline-block"
-          >
-            Nerd out here &rarr;
-          </Link>
-        ) : (
-          <div className="mb-5" />
-        )}
+        {!installCommand && !deepDiveHref && <div className="mb-5" />}
 
         {/* Sections */}
         <div className="flex flex-col gap-4">
@@ -163,8 +169,12 @@ export default function ProjectCard({
           )}
         </div>
 
-        {/* Image */}
-        {image ? (
+        {/* Visual */}
+        {customVisual ? (
+          <div className="mt-6 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-6 overflow-hidden">
+            {customVisual}
+          </div>
+        ) : image ? (
           imageType === "portrait" ? (
             <div className="mt-6 flex justify-center">
               <div

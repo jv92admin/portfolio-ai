@@ -5,6 +5,7 @@ import StaggerGroup from "@/components/StaggerGroup";
 
 interface UseCase {
   domain: string;
+  persona: string;
   status: string;
   description: string;
   stats?: string;
@@ -13,30 +14,33 @@ interface UseCase {
 const useCases: UseCase[] = [
   {
     domain: "Kitchen",
+    persona: "Chef",
     status: "Reference",
     description:
-      "Recipe management, meal planning, grocery coordination. The original domain that proved the architecture.",
+      "Recipe management, meal planning, grocery coordination. The chef thinks in ingredients, portions, and timing. Semantic search, 4-tier ingredient lookup, cook mode with frozen recipe context.",
     stats: "10 entities, 7 subdomains",
   },
   {
     domain: "FPL",
+    persona: "BI Analyst",
     status: "Validated",
     description:
-      "Fantasy Premier League analytics on live data. Players, teams, transfers, gameweek intelligence.",
+      "Fantasy Premier League analytics on live data. The analyst thinks in statistics, trends, and visualizations. Sandboxed Python executor generates matplotlib charts inline.",
     stats: "117 tests, 14 DB tables",
   },
   {
     domain: "CRM",
+    persona: "Sales Coach / Estimator / PM",
     status: "Enterprise",
     description:
-      "Customer relationship management. Accounts, contacts, pipelines, activity tracking.",
+      "Multi-tenant customer management across deals, estimates, design, construction, and billing. Three personas switch by subdomain — a sales coach thinks in pipeline velocity, an estimator thinks in margins, a PM thinks in schedule and budget.",
   },
 ];
 
 function UseCaseCard({ useCase }: { useCase: UseCase }) {
   return (
     <div className="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4">
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-2">
         <span
           className="text-xs tracking-wider text-[var(--text-muted)] uppercase"
           style={{ fontFamily: "var(--font-mono)" }}
@@ -47,6 +51,12 @@ function UseCaseCard({ useCase }: { useCase: UseCase }) {
           {useCase.status}
         </span>
       </div>
+      <p
+        className="text-xs text-[var(--accent)] mb-3"
+        style={{ fontFamily: "var(--font-mono)" }}
+      >
+        {useCase.persona}
+      </p>
       <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
         {useCase.description}
       </p>
@@ -114,6 +124,12 @@ function AccordionItem({ useCase }: { useCase: UseCase }) {
       >
         <div className="overflow-hidden">
           <div className="px-4 pb-3">
+            <p
+              className="text-xs text-[var(--accent)] mb-2"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              {useCase.persona}
+            </p>
             <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
               {useCase.description}
             </p>

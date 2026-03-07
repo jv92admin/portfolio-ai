@@ -4,6 +4,7 @@ import ProjectCard from "./ProjectCard";
 import ScrollIndicator from "./ScrollIndicator";
 import StaggerGroup from "./StaggerGroup";
 import ScrollReveal from "./ScrollReveal";
+import ArchitectureDiagram from "./ArchitectureDiagram";
 
 const projects = [
   {
@@ -34,9 +35,8 @@ const projects = [
     ],
     installCommand: "pip install alfredagain",
     isHero: true,
-    image: "/images/alfred.jpg",
-    imageType: "portrait" as const,
     deepDiveHref: "/alfred",
+    customVisual: <ArchitectureDiagram />,
   },
   {
     title: "ryesvp",

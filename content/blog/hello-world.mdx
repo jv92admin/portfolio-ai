@@ -1,0 +1,38 @@
+---
+title: "Hello World"
+tagline: "Testing the blog pipeline — MDX, read time, and what's coming next"
+date: "2026-03-07"
+tags: ["meta", "building"]
+track: "building"
+---
+
+This is the first post on vignesh.ai. If you're reading this, the blog pipeline works — MDX files committed to the repo, compiled at build time, served as static pages.
+
+## How it works
+
+Posts are `.mdx` files in a `content/blog/` directory. Each file has frontmatter (title, date, tags) and a body written in markdown with support for custom React components. The filename becomes the URL slug.
+
+At build time, the content utility reads all posts, parses frontmatter with `gray-matter`, calculates read time with `reading-time`, and sorts everything reverse-chronologically. Individual posts get compiled with `next-mdx-remote` on the server — no client-side MDX runtime.
+
+```typescript
+const post = await getPostBySlug("hello-world");
+// { title, tagline, date, readTime, content: <ReactElement> }
+```
+
+## What's coming
+
+The signature feature of this blog is **rabbit holes** — expandable inline sections that let you go deeper on specific points without cluttering the main reading flow. Collapsed by default, they expand in-place with momentum animation matching the rest of the site.
+
+If you never click one, you read a clean, complete post. If you click everything, you get a substantially richer experience.
+
+That's Phase 1. For now, this post proves the plumbing works:
+
+- MDX compiles and renders
+- Frontmatter drives the index page
+- Read time is calculated from the body
+- Slugs route correctly
+- 404s work for invalid slugs
+
+## The stack
+
+The blog sits on the same Next.js 16 App Router setup as the rest of the site. No new infrastructure, no CMS, no database. Just markdown files and a build step. The way it should be.

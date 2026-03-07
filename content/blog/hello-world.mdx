@@ -14,24 +14,50 @@ Posts are `.mdx` files in a `content/blog/` directory. Each file has frontmatter
 
 At build time, the content utility reads all posts, parses frontmatter with `gray-matter`, calculates read time with `reading-time`, and sorts everything reverse-chronologically. Individual posts get compiled with `next-mdx-remote` on the server — no client-side MDX runtime.
 
+<RabbitHole label="How the content pipeline works">
+
+The content utility exposes three functions:
+
+- `getAllPosts()` — reads every `.mdx` file, parses frontmatter with `gray-matter`, calculates read time, returns a sorted array. No MDX compilation happens here — fast enough for the index page.
+- `getPostBySlug(slug)` — reads a single file and compiles it with `compileMDX` from `next-mdx-remote/rsc`. Returns the rendered React element plus frontmatter.
+- `getAllSlugs()` — returns all valid slugs for `generateStaticParams`, so Next.js can statically generate every post at build time.
+
 ```typescript
 const post = await getPostBySlug("hello-world");
 // { title, tagline, date, readTime, content: <ReactElement> }
 ```
 
-## What's coming
+The MDX components map is where custom components like `RabbitHole` get registered. When the compiler encounters `<RabbitHole>` in a post, it renders the actual React component instead of treating it as an HTML tag.
+
+</RabbitHole>
+
+## Rabbit holes
 
 The signature feature of this blog is **rabbit holes** — expandable inline sections that let you go deeper on specific points without cluttering the main reading flow. Collapsed by default, they expand in-place with momentum animation matching the rest of the site.
 
-If you never click one, you read a clean, complete post. If you click everything, you get a substantially richer experience.
+If you never click one, you read a clean, complete post. If you click everything, you get a substantially richer experience — almost a different document.
 
-That's Phase 1. For now, this post proves the plumbing works:
+<RabbitHole label="Why not footnotes or sidebars?">
 
-- MDX compiles and renders
-- Frontmatter drives the index page
-- Read time is calculated from the body
-- Slugs route correctly
-- 404s work for invalid slugs
+Footnotes break reading flow — you jump to the bottom of the page and lose your place. Sidebars compete for attention and don't work on mobile. Modals are disruptive.
+
+Rabbit holes are **inline and contextual**. They expand right where you are, preserving your position in the post. The content stays collapsed until you actively choose to explore it, so the default reading experience is clean and focused.
+
+The animation uses the same momentum easing (`cubic-bezier(0.16, 1, 0.3, 1)`) as the rest of the site — things don't just appear, they *arrive*.
+
+</RabbitHole>
+
+## What this post proves
+
+This post exists to verify the plumbing:
+
+- MDX compiles and renders with proper typography
+- Headings, lists, code blocks, and blockquotes are styled
+- `<RabbitHole>` sections expand and collapse inline
+- Read time is calculated from the main body
+- Slugs route correctly, invalid slugs return 404
+
+> The best infrastructure is the kind you forget exists. It just works.
 
 ## The stack
 

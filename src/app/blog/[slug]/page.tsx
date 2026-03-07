@@ -68,7 +68,7 @@ export default async function BlogPost({ params }: PageProps) {
           </div>
         </header>
 
-        <article className="prose prose-invert max-w-none">
+        <article className="blog-prose">
           {post.content}
         </article>
       </main>

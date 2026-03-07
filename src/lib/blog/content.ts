@@ -4,10 +4,13 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 import { compileMDX } from "next-mdx-remote/rsc";
 import type { PostFrontmatter, PostMeta, Post } from "./types";
+import RabbitHole from "@/components/RabbitHole";
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "blog");
 
-const mdxComponents = {};
+const mdxComponents = {
+  RabbitHole,
+};
 
 export function getAllSlugs(): string[] {
   return fs

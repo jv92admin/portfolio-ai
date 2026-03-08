@@ -6,6 +6,7 @@ import StaggerGroup from "./StaggerGroup";
 import ScrollReveal from "./ScrollReveal";
 import ArchitectureDiagram from "./ArchitectureDiagram";
 import BeforeAfterSlider from "./BeforeAfterSlider";
+import StepCarousel from "./StepCarousel";
 
 const projects = [
   {
@@ -21,11 +22,6 @@ const projects = [
       {
         label: "PyPI",
         href: "https://pypi.org/project/alfredagain/",
-        external: true,
-      },
-      {
-        label: "Kitchen Demo",
-        href: "https://alfredagain-production.up.railway.app/",
         external: true,
       },
       {
@@ -97,6 +93,59 @@ const projects = [
               src: "/images/lark/lark_event.png",
               alt: "Lark event detail — monochrome with event art as hero",
             },
+          },
+        ]}
+      />
+    ),
+  },
+  {
+    title: "Alfred — Pantry",
+    subtitle: "My kitchen runs on this",
+    problem:
+      "I was spending hundreds on Uber Eats, watching herbs go bad, and eating the same reheated meal three days in a row. Cooking something for 30 minutes and it not being tasty is a waste of time, money, and emotional bandwidth.",
+    built: "A kitchen assistant that actually knows me. Through onboarding it learns my cooking days, cuisine preferences, skill level, and equipment. Full planning mode goes from pantry inventory to a week of meals — with prep lists and shopping lists generated automatically. Cooking mode for live sessions: timing, temperatures, substitutions, without touching persistent memory. Brainstorm mode for riffing on new ideas. A recipe importer that works across 400+ sites. An @ tagging system to pull in recipes and ingredients without bloating context. A 2,500-ingredient database with fuzzy and semantic matching for substitutions.",
+    learned:
+      "That the hardest part of a kitchen assistant isn't the AI — it's the data model. Ingredient normalization across thousands of recipes, inventory tracking that stays useful, and mode isolation so a quick 'what temp for the chicken?' doesn't derail your meal plan. This app is what made me realize the framework underneath was more abstract than a personal assistant — and that's what became Alfred.",
+    links: [
+      {
+        label: "Try it",
+        href: "https://alfredagain-production.up.railway.app/",
+        external: true,
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/jv92admin/alfredagain",
+        external: true,
+      },
+    ],
+    customVisual: (
+      <StepCarousel
+        title="From pantry to plate"
+        steps={[
+          {
+            label: "Onboarding",
+            src: "/images/pantry/onboarding.png",
+            alt: "Alfred onboarding — tell me about your kitchen",
+          },
+          {
+            label: "Recipe",
+            src: "/images/pantry/recipe.png",
+            alt: "Import a recipe from any URL",
+          },
+          {
+            label: "Meal Plan",
+            src: "/images/pantry/mealplan.png",
+            alt: "Weekly meal plan generated from your pantry",
+          },
+          {
+            label: "Shopping",
+            src: "/images/pantry/shopping.png",
+            alt: "Auto-generated shopping list",
+          },
+          {
+            label: "Cook",
+            src: "/images/pantry/cookmode.png",
+            alt: "Live cooking mode with real-time assistance",
           },
         ]}
       />

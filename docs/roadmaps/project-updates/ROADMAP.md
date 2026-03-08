@@ -1,7 +1,7 @@
 # Project Updates Roadmap
 
 **Status:** In Progress
-**Phases:** 5 / 10
+**Phases:** 5 / 11
 
 ---
 
@@ -22,6 +22,7 @@ The goal: every project card and page tells an honest, accurate story grounded i
 | 1b | Alfred page rework | Complete | 5-section deep-dive rewrite, card rework with inline ArchitectureDiagram, intro block rewrite |
 | 2a | Lark content research | Complete | Research LLM event tagging and Claude Code design skill/agent system. Output: content brief. |
 | 2b | Lark card rework | Complete | BeforeAfterSlider component, research-backed card copy, 3 before/after image pairs |
+| 2c | Kitchen app card | Not Started | New standalone card for alfredagain Kitchen app — recipe importing, cooking mode, brainstorming, meal planning. Research alfredagain repo first. |
 | 3a | FPL content research | Not Started | Read fpltools repo, understand what's built |
 | 3b | FPL card rework | Not Started | Card content and UI based on research |
 | 4 | TrackViewer + vignesh.ai cards | Not Started | Research + rework remaining project cards |

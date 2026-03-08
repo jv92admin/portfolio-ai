@@ -5,6 +5,7 @@ import ScrollIndicator from "./ScrollIndicator";
 import StaggerGroup from "./StaggerGroup";
 import ScrollReveal from "./ScrollReveal";
 import ArchitectureDiagram from "./ArchitectureDiagram";
+import BeforeAfterSlider from "./BeforeAfterSlider";
 
 const projects = [
   {
@@ -39,22 +40,31 @@ const projects = [
     customVisual: <ArchitectureDiagram />,
   },
   {
-    title: "ryesvp",
+    title: "Lark",
     titleDisplay: (
       <>
-        r<span style={{ color: "var(--accent)" }}>yes</span>vp
+        Lark{" "}
+        <span
+          style={{
+            color: "var(--text-muted)",
+            fontSize: "14px",
+            fontWeight: 400,
+          }}
+        >
+          (RIP ryesvp)
+        </span>
       </>
     ),
-    subtitle: "A social events platform",
+    subtitle: "Social events, rebuilt from scratch",
     problem:
-      "I love going to live music and comedy. I hate texting five group chats about it. What if Instagram met Ticketmaster — a social events page where your friends could just see what's happening and show up?",
-    built: "A full-stack production app serving 50+ active users. My first real project with Claude Code.",
+      "I go to 100+ shows a year. There's no good way to find out if your friends are interested in the same ones — so I built one.",
+    built: "A social events platform where you follow venues and friends, see what's happening, and make plans together. Auth, social feeds, event discovery, RSVP — the full stack. Then I rebuilt it from scratch: an LLM enrichment pipeline that scrapes raw event data nightly and uses GPT-4o-mini to categorize events, extract performers, and direct targeted Spotify and Knowledge Graph lookups. Claude Code enforces design consistency through a four-agent pipeline and ten specialized skills.",
     learned:
-      "Hosting, database architecture, row-level security, AI-as-a-service for metadata tagging, agentic dev workflows, and the fundamentals of Claude Code.",
+      "How to build auth and social feeds from zero. How much UX matters when real people use your app. And that rebuilding something from scratch — with a real design system and an LLM pipeline — teaches you more than building it the first time.",
     links: [
       {
-        label: "Visit RYESVP.me",
-        href: "https://ryesvp.me",
+        label: "Visit lark.show",
+        href: "https://lark.show",
         external: true,
       },
       {
@@ -63,8 +73,34 @@ const projects = [
         external: true,
       },
     ],
-    image: "/images/ryesvp.png",
-    imageType: "portrait" as const,
+    customVisual: (
+      <BeforeAfterSlider
+        pairs={[
+          {
+            label: "Event Feed",
+            before: {
+              src: "/images/lark/ryesvp_discover.png",
+              alt: "RYSVP event feed — light mode with green accents",
+            },
+            after: {
+              src: "/images/lark/lark_homepage.png",
+              alt: "Lark event feed — dark monochrome design",
+            },
+          },
+          {
+            label: "Event Detail",
+            before: {
+              src: "/images/lark/ryesvp_plan.png",
+              alt: "RYSVP plan view — green buttons and warm tones",
+            },
+            after: {
+              src: "/images/lark/lark_event.png",
+              alt: "Lark event detail — monochrome with event art as hero",
+            },
+          },
+        ]}
+      />
+    ),
   },
   {
     title: "trackviewer",

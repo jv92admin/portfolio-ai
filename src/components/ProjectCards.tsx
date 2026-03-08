@@ -188,7 +188,7 @@ const projects = [
   {
     title: "fplpundit",
     subtitle: "Fantasy Premier League, but with a BI team",
-    badge: "Coming Soon",
+    badge: "In Dev — Parked",
     problem:
       "I've played FPL for 10+ years. There's no shortage of data — 775 players, 38 gameweeks, hundreds of stats — but you can't just dump all of it into an LLM and hope for insight. I needed agents that could actually crunch numbers, not just summarize them.",
     building:

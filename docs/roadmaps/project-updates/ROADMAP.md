@@ -1,7 +1,7 @@
 # Project Updates Roadmap
 
 **Status:** In Progress
-**Phases:** 5 / 11
+**Phases:** 8 / 11
 
 ---
 
@@ -22,9 +22,9 @@ The goal: every project card and page tells an honest, accurate story grounded i
 | 1b | Alfred page rework | Complete | 5-section deep-dive rewrite, card rework with inline ArchitectureDiagram, intro block rewrite |
 | 2a | Lark content research | Complete | Research LLM event tagging and Claude Code design skill/agent system. Output: content brief. |
 | 2b | Lark card rework | Complete | BeforeAfterSlider component, research-backed card copy, 3 before/after image pairs |
-| 2c | Kitchen app card | Not Started | New standalone card for alfredagain Kitchen app — recipe importing, cooking mode, brainstorming, meal planning. Research alfredagain repo first. |
-| 3a | FPL content research | Not Started | Read fpltools repo, understand what's built |
-| 3b | FPL card rework | Not Started | Card content and UI based on research |
+| 2c | Kitchen app card | Complete | New standalone "Alfred — Pantry" card with StepCarousel, research-backed copy, real screenshots |
+| 3a | FPL content research | Complete | Deep read of fpltools repo. Open-world tool calling, sandbox execution, viz generation. |
+| 3b | FPL card rework | Complete | Research-backed copy update, jargon cleanup across all cards. Screenshots deferred (not deployed yet). |
 | 4 | TrackViewer + vignesh.ai cards | Not Started | Research + rework remaining project cards |
 | 5 | Visual & icon polish | Not Started | SVG stroke consistency, copy review, text refinement |
 | 6 | Navigation audit | Not Started | Project anchor IDs, mobile quick-nav, responsive testing |

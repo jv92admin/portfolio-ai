@@ -13,10 +13,10 @@ const projects = [
     title: "alfred(again)",
     subtitle: "A domain-agnostic multi-agent orchestration framework",
     problem:
-      "Most agent frameworks demo well but break in production. I wanted to build one that actually orchestrates real systems — with deterministic state, strict identity boundaries, and a protocol that forces you to think before you ship a new domain.",
-    built: "A five-agent orchestration engine on LangGraph, published on PyPI as alfredagain (v2.4.2). 73-method DomainConfig protocol. 164 tests. Three validated domains: Kitchen (reference implementation), FPL (analytics), and CRM (enterprise consulting).",
+      "Most agent frameworks demo well but break in production. I wanted to build one that actually works — where you can plug in any domain and the agents know how to read, write, and reason about it without custom wiring every time.",
+    built: "A five-agent orchestration engine on LangGraph, published on PyPI as alfredagain. You define your domain once — what data exists, how it connects, what the agents are allowed to do — and the framework handles the rest. 164 tests. Three validated domains: Kitchen (daily use), FPL (analytics), and CRM (enterprise consulting).",
     learned:
-      "Why deterministic systems matter when LLMs are nondeterministic. How to design abstraction boundaries that actually hold. That the hardest problem in orchestration isn't the agents — it's the state.",
+      "That the hardest problem in orchestration isn't the agents — it's the state. LLMs are nondeterministic, so everything around them has to be predictable. And that a good abstraction boundary is one you don't have to explain twice.",
     links: [
       { label: "Learn more", href: "/alfred", external: false },
       {
@@ -187,14 +187,21 @@ const projects = [
   },
   {
     title: "fplpundit",
-    subtitle: "Fantasy Premier League analytics",
+    subtitle: "Fantasy Premier League, but with a BI team",
     badge: "Coming Soon",
     problem:
-      "I've played FPL for 10+ years and I've never cracked the top 100K. Something had to change.",
+      "I've played FPL for 10+ years. There's no shortage of data — 775 players, 38 gameweeks, hundreds of stats — but you can't just dump all of it into an LLM and hope for insight. I needed agents that could actually crunch numbers, not just summarize them.",
     building:
-      "A \"pundit on demand\" — a BI framework that sits on top of alfred(again)'s orchestration engine, using live FPL data.",
+      "A BI layer on top of Alfred where agents act as data analysts. Instead of stuffing data into context, they write and execute Python in a sandbox — pandas for analysis, matplotlib for charts. Six domains unlocked: squad planning, player scouting, transfer market, mini-league rivalries, live gameweek tracking, and fixture analysis. I'd solved analysis — so I pushed further: if agents can crunch numbers, why can't they generate visualizations on demand? I spent years working alongside BI teams and wanted to prove that data viz on demand wasn't a pipe dream.",
     willProve:
-      "That alfred(again)'s architecture is genuinely domain-agnostic — not just a kitchen app with abstractions bolted on.",
+      "Where the real line is between what LLMs are good at — reasoning, intent, formatting — and what they struggle with: math on 30,000 rows. Letting agents delegate computation to Python and keep interpretation for themselves is what makes the whole framework click.",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/jv92admin/fpltools",
+        external: true,
+      },
+    ],
     isMuted: true,
   },
 ];
